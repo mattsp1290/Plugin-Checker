@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'mysql2', '0.3.11', :group => [:development, :test]
+
 gem 'pg', :group => :production
 
 # Use SCSS for stylesheets
@@ -17,7 +17,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby, :group => [:development, :test]
+group :development, :test do
+  gem 'therubyracer', platforms: :ruby
+  gem 'mysql2', '0.3.11'
+end
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
