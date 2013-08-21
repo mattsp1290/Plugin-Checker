@@ -20,6 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 group :development, :test do
   gem 'therubyracer', platforms: :ruby
   gem 'mysql2', '0.3.11'
+  gem 'sqlite3'
 end
 
 
