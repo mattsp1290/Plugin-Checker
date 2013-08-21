@@ -12,6 +12,6 @@ $(document).ready ->
   windowName = 'userConsole'
   popUp = window.open('www.google.com', windowName, 'width=100, height=100, left=24, top=24, scrollbars, resizable')
   if (popUp == null || typeof(popUp)=='undefined') 
-    ('#popup-result').html('disabled')
-  else
     ('#popup-result').html('enabled')
+  else
+    ('#popup-result').html('disabled')
