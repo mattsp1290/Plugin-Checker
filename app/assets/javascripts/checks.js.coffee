@@ -161,7 +161,7 @@ $(document).ready ->
     # set path
     ZeroClipboard.setMoviePath('ZeroClipboard.swf')
     # create client
-    clip = new ZeroClipboard.Client(document.getElementById('copy'))
+    clip = new ZeroClipboard.Client()
     #event
     clip.addEventListener('mousedown',->
       clip.setText('Hello World')
@@ -171,4 +171,4 @@ $(document).ready ->
     )
     
     #glue it to the button
-    clip.glue( 'hello world' )
+    clip.glue( document.getElementById('copy'))
