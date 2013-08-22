@@ -156,13 +156,13 @@ $(document).ready ->
     
     
   if FlashDetect.raw
-    copyButton = $('<div class="span12"><input type="button" id="copy" data-clipboard-target="clipboard_text" name="copy" value="Copy to Clipboard" /></div>')
+    copyButton = $('<div class="span12"><input type="button" id="copy" data-clipboard-text="Copy me!" name="copy" value="Copy to Clipboard" /></div>')
     $('#copy-row').html(copyButton)
     # set path
     ZeroClipboard.setMoviePath('ZeroClipboard.swf')
     # create client
-    clip = new ZeroClipboard.Client()
+    clip = new ZeroClipboard.Client( $('#copy') )
     #event
     
     #glue it to the button
-    clip.glue( document.getElementById('copy'))
+    #clip.glue( document.getElementById('copy'))
