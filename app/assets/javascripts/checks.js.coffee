@@ -143,7 +143,7 @@ $(document).ready ->
   
   if(ie)
     screen = document.frames.screen
-    zoom = (((screen.deviceXDPI / screen.systemXDPI) * 100 + 0.9).toFixed())
+    zoom = (((screen.deviceXDPI / screen.systemXDPI) * 100).toFixed())
     zoomLevel = $('<div class="span3">Zoom Level</div><div class="span9">' + zoom + '</div>')
     $('#zoom-level').html(zoomLevel)
     
@@ -156,19 +156,13 @@ $(document).ready ->
     
     
   if FlashDetect.raw
-    copyButton = $('<div class="span12"><input type="button" id="copy" name="copy" value="Copy to Clipboard" /></div>')
+    copyButton = $('<div class="span12"><input type="button" id="copy" data-clipboard-target="clipboard_text" name="copy" value="Copy to Clipboard" /></div>')
     $('#copy-row').html(copyButton)
     # set path
     ZeroClipboard.setMoviePath('ZeroClipboard.swf')
     # create client
     clip = new ZeroClipboard.Client()
     #event
-    clip.addEventListener('mousedown',->
-      clip.setText('Hello World')
-    )
-    clip.addEventListener('complete',(client,text) ->
-      alert('copied: ' + text)
-    )
     
     #glue it to the button
     clip.glue( document.getElementById('copy'))
