@@ -15,7 +15,7 @@ $(document).ready ->
   #  ('#popup-result').html('disabled')
     
 
-  popup = window.open(winPath,winName,winFeature,true)
+  popup = window.open('www.google.com')
   setTimeout(
     ->
       if(!popup || popup.outerHeight == 0)
