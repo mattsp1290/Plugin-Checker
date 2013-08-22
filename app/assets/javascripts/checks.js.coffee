@@ -105,7 +105,7 @@ $(document).ready ->
   
   
   
-  $('#popup-text').html 'JavaScript'
+  $('#popup-text').html 'Pop-up Blocker'
     
 
   popup = window.open('http://www.google.com')
@@ -125,10 +125,10 @@ $(document).ready ->
 
 
 
-  $('#reader-text').html 'JavaScript'
+  $('#reader-text').html 'Acrobat Reader'
   info = getAcrobatInfo()
   if info.acrobat
-    info = info.acrobat + " " + info.acrobatVersion
+    info = info.acrobatVersion
   else
     info = 'disabled'
     
