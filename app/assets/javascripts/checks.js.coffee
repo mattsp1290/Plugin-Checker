@@ -2,7 +2,7 @@ $(document).ready ->
   
   $('h1').html 'Plug-in Checker'
   
-  
+  ie = false
   
   OSName="Unknown OS"
   if (navigator.appVersion.indexOf("Win")!=-1)
@@ -35,6 +35,7 @@ $(document).ready ->
     
   if match[0] == 'MSIE'
     match[0] = 'Internet Explorer'
+    ie = true
   
   if(match && (tem = ua.match(/version\/([\.\d]+)/i)))
     match[2]= tem[1]
@@ -109,17 +110,23 @@ $(document).ready ->
     
 
   popup = window.open('http://www.google.com')
+  functionRan = false
   setTimeout(
     ->
       if(!popup || popup.outerHeight == 0)
         # First Checking Condition Works For IE & Firefox
         # Second Checking Condition Works For Chrome
-        $('#popup-result').html('enabled')
+        $('#popup-result').html('enabled ')
+        functionRan = true
       else
         # Popup Blocker Is Disabled
         popup.close()
-        $('#popup-result').html('disabled')
+        $('#popup-result').html('disabled ')
+        functionRan = true
     25)
+    
+  if(!(functionRan))
+    $('#popup-result').html('enabled ')
     
 
 
@@ -133,3 +140,35 @@ $(document).ready ->
     info = 'disabled'
     
   $('#reader-result').append(info)
+  
+  if(ie)
+    screen = document.frames.screen
+    zoom = (((screen.deviceXDPI / screen.systemXDPI) * 100 + 0.9).toFixed())
+    zoomLevel = $('<div class="span3">Zoom Level</div><div class="span9">' + zoom + '</div>')
+    $('#zoom-level').html(zoomLevel)
+    
+    compView = 'disabled'
+    if (document.documentMode == 7) 
+      compView = 'enabled'
+      
+    comp = $('<div class="span3">Compatibility View</div><div class="span9">' + compView + '</div>')
+    $('#comp-view').html(comp)
+    
+    
+  if FlashDetect.raw
+    copyButton = $('<div class="span12"><input type="button" id="copy" name="copy" value="Copy to Clipboard" /></div>')
+    $('#copy').html(copyButton)
+    # set path
+    ZeroClipboard.setMoviePath('ZeroClipboard.swf')
+    # create client
+    clip = new ZeroClipboard.Client()
+    #event
+    clip.addEventListener('mousedown',->
+      clip.setText('Hello World')
+    )
+    clip.addEventListener('complete',(client,text) ->
+      alert('copied: ' + text)
+    )
+    
+    #glue it to the button
+    clip.glue($('#copy'))
