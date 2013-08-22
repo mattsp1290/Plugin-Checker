@@ -1,10 +1,34 @@
 $(document).ready ->
-  $('#browser-result').append navigator.userAgent
+  ua = navigator.userAgent
+  $('h1').html 'Plug-in Checker'
+  $('#browser-text').html 'Browser Version'
+  app = navigator.appName
+  match = ua.match(/(opera|chrome|safari|firefox|msie|trident)\/?\s*([\d\.]+)/i) || []
+  tem = ua.match(/(opera|chrome|safari|firefox|msie|trident)\/?\s*([\d\.]+)/i) || []
+  if match[2]
+    match = [match[1], match[2]]
+  else
+    match = [app, navigator.appVersion, '-?']
   
-  $('#flash-result').html FlashDetect.raw
+  if(match && (tem = ua.match(/version\/([\.\d]+)/i)))
+    match[2]= tem[1]
+  
+  $('#browser-result').append(match.join(' '))
+  
+  $('#uas-text').html 'User Agent String'
+  $('#uas-result').append ua
+  
+  $('#flash-text').html 'Flash Version'
+  if FlashDetect.raw
+    $('#flash-result').html(FlashDetect.major + '.' + FlashDetect.minor + '.' + FlashDetect.revision)
+  else
+    $('#flash-result').html 'disabled'
 
-  $('#java-result').html deployJava.getJREs()
-  
+  $('#java-text').html 'Java Version'
+  if deployJava.getJREs().length > 0
+    $('#java-result').html deployJava.getJREs()
+  else
+    $('#java-result').html 'disabled'
   
   
   #windowName = 'userConsole'
@@ -13,9 +37,11 @@ $(document).ready ->
   #  ('#popup-result').html('enabled')
   #else
   #  ('#popup-result').html('disabled')
+  
+  $('#popup-text').html 'JavaScript'
     
 
-  popup = window.open('www.google.com')
+  popup = window.open('http://www.google.com')
   setTimeout(
     ->
       if(!popup || popup.outerHeight == 0)

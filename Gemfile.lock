@@ -27,7 +27,15 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.12)
+    better_errors (0.9.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
+    bootstrap-sass (2.3.2.1)
+      sass (~> 3.2)
     builder (3.1.4)
+    coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -35,9 +43,19 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
+    font-awesome-rails (3.2.1.3)
+      railties (>= 3.2, < 5.0)
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
+    formtastic-bootstrap (2.1.3)
+      formtastic (~> 2.2)
     hike (1.2.3)
     i18n (0.6.4)
     jbuilder (1.4.2)
@@ -58,6 +76,8 @@ GEM
     mysql2 (0.3.11)
     pg (0.16.0)
     polyglot (0.3.3)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -69,6 +89,11 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.0)
       sprockets-rails (~> 2.0.0)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.1)
+    rails_stdout_logging (0.0.1)
     railties (4.0.0)
       actionpack (= 4.0.0)
       activesupport (= 4.0.0)
@@ -122,12 +147,21 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors (>= 0.3.2)
+  binding_of_caller (>= 0.6.8)
+  bootstrap-sass (~> 2.3.2.0)
   coffee-rails (~> 4.0.0)
+  figaro (>= 0.5.3)
+  font-awesome-rails
+  formtastic
+  formtastic-bootstrap
   jbuilder (~> 1.2)
   jquery-rails
   mysql2 (= 0.3.11)
   pg
+  quiet_assets (>= 1.0.1)
   rails (= 4.0.0)
+  rails_12factor
   sass-rails (~> 4.0.0)
   sdoc
   sqlite3
