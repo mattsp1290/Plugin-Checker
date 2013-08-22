@@ -24,5 +24,6 @@ $(document).ready ->
         $('#popup-result').html('enabled')
       else
         # Popup Blocker Is Disabled
+        popup.close()
         $('#popup-result').html('disabled')
     25)
