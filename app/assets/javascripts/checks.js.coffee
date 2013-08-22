@@ -161,7 +161,7 @@ $(document).ready ->
     # set path
     ZeroClipboard.setMoviePath('ZeroClipboard.swf')
     # create client
-    clip = new ZeroClipboard.Client($('#copy'))
+    clip = new ZeroClipboard.Client()
     #event
     clip.addEventListener('mousedown',->
       clip.setText('Hello World')
