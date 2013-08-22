@@ -171,4 +171,4 @@ $(document).ready ->
     )
     
     #glue it to the button
-    clip.glue()
+    clip.glue( document.getElementById('copy') )
