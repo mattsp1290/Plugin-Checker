@@ -157,7 +157,7 @@ $(document).ready ->
     
   if FlashDetect.raw
     copyButton = $('<div class="span12"><input type="button" id="copy" name="copy" value="Copy to Clipboard" /></div>')
-    $('#copy').html(copyButton)
+    $('#copy-row').html(copyButton)
     # set path
     ZeroClipboard.setMoviePath('ZeroClipboard.swf')
     # create client
