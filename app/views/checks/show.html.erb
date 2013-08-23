@@ -1,4 +1,81 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_check_path(@check) %> |
-<%= link_to 'Back', checks_path %>
+<h1>Plugin Check</h1>
+<h2>#<%= @check.id %></h2>
+ <div class="row odd">
+	  <div class="span3" id="os-text">
+	  </div>
+	  <div class="span9">
+	  	<%= @check.os %>
+	  </div>
+  </div>
+  <div class="row even">
+	  <div class="span3" id="browser-text">
+	  </div>
+	  <div class="span9">
+	  	<%= @check.browser %>
+	  </div>
+  </div>
+  <div class="row odd">
+	  <div class="span3" id="uas-text">
+	  </div>
+	  <div class="span9">
+	  	<%= @check.uas %>
+	  </div>
+  </div>
+  <div class="row even">
+	  <div class="span3" id="resolution-text">
+	  </div>
+	  <div class="span9">
+	  	<%= @check.resolution %>
+	  </div>
+  </div>
+  <div class="row odd">
+	  <div class="span3" id="cookies-text">
+	  </div>
+	  <div class="span9">
+	  	<%= @check.cookies %>
+	  </div>
+  </div>
+  <div class="row even">
+	  <div class="span3" id="popup-text"></div>
+	  <div class="span9">
+	  	<%= @check.popups %>
+	  </div>
+  </div>
+  <div class="row odd">
+	  <div class="span3" id="flash-text">
+	  </div>
+	  <div class="span9">
+	  	<%= @check.flash %>
+	  </div>
+  </div>
+  <div class="row even">
+	  <div class="span3" id="java-text">
+	  </div>
+	  <div class="span9">
+	  	<%= @check.java %>
+	  </div>
+  </div>
+  <div class="row odd">
+	  <div class="span3" id="reader-text"></div>
+	  <div class="span9">
+	  	<%= @check.reader %>
+	  </div>
+  </div>
+  
+  <div class="row even">
+  	<div class="span3">
+  		Zoom Level
+  	</div>
+  	<div class="span9">
+  		<%= @check.zoom %>
+  	</div>
+  </div>
+  <div class="row odd">
+  	<div class="span3">
+  		Compatibility View
+  	</div>
+  	<div class="span9">
+  		<%= @check.comp %>
+  	</div>
+  </div>

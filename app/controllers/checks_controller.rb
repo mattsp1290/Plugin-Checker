@@ -69,6 +69,6 @@ class ChecksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_params
-      params[:check]
+      params.require(:check).permit(:os, :browser, :uas, :resolution, :cookies, :popups, :flash, :java, :reader, :zoom, :comp)
     end
 end

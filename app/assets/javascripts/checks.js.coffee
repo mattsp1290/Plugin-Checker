@@ -1,6 +1,6 @@
 $(document).ready ->
   
-  $('h1').html 'Plug-in Checker'
+  $('.script-disabled').html 'Plug-in Checker'
   
   ie = false
   
@@ -16,6 +16,7 @@ $(document).ready ->
   
   $('#os-text').html 'Operating System'
   $('#os-result').append OSName
+  $('#check_os').val(OSName)
   
   
   
@@ -40,8 +41,9 @@ $(document).ready ->
   if(match && (tem = ua.match(/version\/([\.\d]+)/i)))
     match[2]= tem[1]
   
-  $('#browser-result').append(match.join(' '))
-  
+  browser_result = match.join(' ')
+  $('#browser-result').append(browser_result)
+  $('#check_browser').val(browser_result)
   
   
   
@@ -49,14 +51,16 @@ $(document).ready ->
   
   $('#uas-text').html 'User Agent String'
   $('#uas-result').append ua
+  $('#check_uas').val(ua)
   
   
   
   
   
   $('#resolution-text').html 'Screen Resolution'
-  $('#resolution-result').append(window.screen.availWidth + ' x ' + window.screen.availHeight)
-  
+  resolution = '' + window.screen.availWidth + ' x ' + window.screen.availHeight
+  $('#resolution-result').append(resolution)
+  $('#check_resolution').val(resolution)
   
   
   
@@ -83,51 +87,57 @@ $(document).ready ->
     cookies = 'disabled'
     
   $('#cookies-result').append(cookies)
+  $('#check_cookies').val(cookies)
   
   
   
   
   $('#flash-text').html 'Flash Version'
+  flash = 'Unavailable'
   if FlashDetect.raw
-    $('#flash-result').html(FlashDetect.major + '.' + FlashDetect.minor + '.' + FlashDetect.revision)
+    flash = (FlashDetect.major + '.' + FlashDetect.minor + '.' + FlashDetect.revision)
   else
-    $('#flash-result').html 'disabled'
+    flash = 'disabled'
 
-
-
+  $('#check_flash').val(flash)
+  $('#flash-result').html(flash)
 
 
   $('#java-text').html 'Java Version'
+  java = 'Unavailable'
   if deployJava.getJREs().length > 0
-    $('#java-result').html deployJava.getJREs()
+    java = deployJava.getJREs()
   else
-    $('#java-result').html 'disabled'
+    java = 'disabled'
   
-  
-  
+  $('#java-result').html(java)
+  $('#check_java').val(java)
   
   $('#popup-text').html 'Pop-up Blocker'
     
 
   popup = window.open('http://www.google.com')
   functionRan = false
+  popups = "Unavailable"
   setTimeout(
     ->
       if(!popup || popup.outerHeight == 0)
         # First Checking Condition Works For IE & Firefox
         # Second Checking Condition Works For Chrome
-        $('#popup-result').html('enabled ')
+        popups = 'enabled'
         functionRan = true
       else
         # Popup Blocker Is Disabled
         popup.close()
-        $('#popup-result').html('disabled ')
+        popups = 'disabled'
         functionRan = true
     25)
     
   if(!(functionRan))
-    $('#popup-result').html('enabled ')
+    popups = 'enabled'
     
+  $('#check_popups').val(popups)
+  $('#popup-result').html(popups)
 
 
 
@@ -140,12 +150,14 @@ $(document).ready ->
     info = 'disabled'
     
   $('#reader-result').append(info)
+  $('#check_reader').val(info)
   
   if(ie)
     screen = document.frames.screen
     zoom = (((screen.deviceXDPI / screen.systemXDPI) * 100).toFixed())
     zoomLevel = $('<div class="span3">Zoom Level</div><div class="span9">' + zoom + '</div>')
     $('#zoom-level').html(zoomLevel)
+    $('#check_zoom').val(zoom)
     
     compView = 'disabled'
     if (document.documentMode == 7) 
@@ -153,16 +165,5 @@ $(document).ready ->
       
     comp = $('<div class="span3">Compatibility View</div><div class="span9">' + compView + '</div>')
     $('#comp-view').html(comp)
+    $('#check_comp').val(compView)
     
-    
-  if FlashDetect.raw
-    copyButton = $('<div class="span12"><input type="button" id="copy" data-clipboard-text="Copy me!" name="copy" value="Copy to Clipboard" /></div>')
-    $('#copy-row').html(copyButton)
-    # set path
-    ZeroClipboard.setMoviePath('ZeroClipboard.swf')
-    # create client
-    clip = new ZeroClipboard.Client( $('#copy') )
-    #event
-    
-    #glue it to the button
-    #clip.glue( document.getElementById('copy'))

@@ -11,11 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820144247) do
+ActiveRecord::Schema.define(version: 20130822214519) do
 
   create_table "checks", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "os"
+    t.string   "browser"
+    t.string   "uas"
+    t.string   "resolution"
+    t.string   "cookies"
+    t.string   "popups"
+    t.string   "flash"
+    t.string   "java"
+    t.string   "reader"
+    t.string   "zoom"
+    t.string   "comp"
   end
 
 end

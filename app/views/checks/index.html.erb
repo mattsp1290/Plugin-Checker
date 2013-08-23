@@ -3,18 +3,16 @@
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>ID</th>
+      <th>Timestamp</th>
     </tr>
   </thead>
 
   <tbody>
     <% @checks.each do |check| %>
       <tr>
-        <td><%= link_to 'Show', check %></td>
-        <td><%= link_to 'Edit', edit_check_path(check) %></td>
-        <td><%= link_to 'Destroy', check, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to check.id, check %></td>
+        <td><%= check.created_at %></td>
       </tr>
     <% end %>
   </tbody>
