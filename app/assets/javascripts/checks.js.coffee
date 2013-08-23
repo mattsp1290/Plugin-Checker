@@ -117,27 +117,27 @@ $(document).ready ->
     
 
   popup = window.open('http://www.google.com')
-  functionRan = false
   popups = "Unavailable"
+  $('#check_popups').val(popups)
+  $('#popup-result').html(popups)
   setTimeout(
     ->
       if(!popup || popup.outerHeight == 0)
         # First Checking Condition Works For IE & Firefox
         # Second Checking Condition Works For Chrome
         popups = 'enabled'
-        functionRan = true
+        $('#check_popups').val('enabled')
+        $('#popup-result').html('enabled')
       else
         # Popup Blocker Is Disabled
         popup.close()
         popups = 'disabled'
-        functionRan = true
+        $('#check_popups').val('disabled')
+        $('#popup-result').html('disabled')
     25)
     
-  if(!(functionRan))
-    popups = 'enabled'
     
-  $('#check_popups').val(popups)
-  $('#popup-result').html(popups)
+  
 
 
 
