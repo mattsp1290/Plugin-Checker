@@ -37,8 +37,7 @@ $(document).ready ->
   
   $('.script-disabled').html 'Plug-in Checker'
   
-  ie = false
-  
+    
   # Get the name of the OS and display it
   $('#os-text').html 'Operating System'
   $('#os-result').append(getOSName())
@@ -160,7 +159,7 @@ $(document).ready ->
   $('#reader-result').append(info)
   $('#check_reader').val(info)
   
-  if(ie)
+  if(/Internet\sExplorer/.test(getBrowser()))
     screen = document.frames.screen
     zoom = (((screen.deviceXDPI / screen.systemXDPI) * 100).toFixed())
     zoomLevel = $('<div class="span3">Zoom Level</div><div class="span9">' + zoom + '</div>')
@@ -175,11 +174,6 @@ $(document).ready ->
     $('#comp-view').html(comp)
     $('#check_comp').val(compView)
     
-    
-  console.log("Match IE")
-  console.log(/Internet\sExplorer/.test(getBrowser()))
-  console.log("Match FF")
-  console.log(/Firefox/.test(getBrowser()))
     
 
     
