@@ -1,31 +1,21 @@
-$(document).ready ->
-  
-  $('.script-disabled').html 'Plug-in Checker'
-  
-  ie = false
-  
-  OSName="Unknown OS"
+getOSName = ->
+  # The following code was modified from http://www.javascripter.net/faq/operatin.htm
   if (navigator.appVersion.indexOf("Win")!=-1)
-    OSName="Windows"
-  if (navigator.appVersion.indexOf("Mac")!=-1)
-    OSName="MacOS"
-  if (navigator.appVersion.indexOf("X11")!=-1)
-    OSName="UNIX"
-  if (navigator.appVersion.indexOf("Linux")!=-1)
-    OSName="Linux"
-  
-  $('#os-text').html 'Operating System'
-  $('#os-result').append OSName
-  $('#check_os').val(OSName)
-  
-  
-  
-  
-  
-  
-  
-  ua = navigator.userAgent
-  $('#browser-text').html 'Browser Version'
+    return "Windows"
+  else if (navigator.appVersion.indexOf("Mac")!=-1)
+    return "MacOS"
+  else if (navigator.appVersion.indexOf("X11")!=-1)
+    return "UNIX"
+  else if (navigator.appVersion.indexOf("Linux")!=-1)
+    return "Linux"
+  else
+    return "Unkown OS"
+
+getUAS = ->
+  return navigator.userAgent
+
+getBrowser = ->
+  ua = getUAS()
   app = navigator.appName
   match = ua.match(/(opera|chrome|safari|firefox|msie|trident)\/?\s*([\d\.]+)/i) || []
   tem = ua.match(/(opera|chrome|safari|firefox|msie|trident)\/?\s*([\d\.]+)/i) || []
@@ -36,22 +26,44 @@ $(document).ready ->
     
   if match[0] == 'MSIE'
     match[0] = 'Internet Explorer'
-    ie = true
   
   if(match && (tem = ua.match(/version\/([\.\d]+)/i)))
     match[2]= tem[1]
   
-  browser_result = match.join(' ')
-  $('#browser-result').append(browser_result)
-  $('#check_browser').val(browser_result)
+  return match.join(' ')
+
+
+$(document).ready ->
+  
+  $('.script-disabled').html 'Plug-in Checker'
+  
+  ie = false
+  
+  # Get the name of the OS and display it
+  $('#os-text').html 'Operating System'
+  $('#os-result').append(getOSName())
+  $('#check_os').val(getOSName())
+  
+  console.log("Match IE")
+  console.log(/Internet\sExplorer/.test(getBrowser()))
+  console.log("Match FF")
+  console.log(/Firefox/.test(getBrowser()))
+  
+  
+  
+  
+  
+  $('#browser-text').html 'Browser Version'
+  $('#browser-result').append(getBrowser())
+  $('#check_browser').val(getBrowser())
   
   
   
   
   
   $('#uas-text').html 'User Agent String'
-  $('#uas-result').append ua
-  $('#check_uas').val(ua)
+  $('#uas-result').append(getUAS())
+  $('#check_uas').val(getUAS())
   
   
   
@@ -166,4 +178,6 @@ $(document).ready ->
     comp = $('<div class="span3">Compatibility View</div><div class="span9">' + compView + '</div>')
     $('#comp-view').html(comp)
     $('#check_comp').val(compView)
+    
+
     

@@ -19,7 +19,6 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 group :development, :test do
   gem 'therubyracer', platforms: :ruby
-  gem 'mysql2', '0.3.11'
   gem 'sqlite3'
 end
 
@@ -51,11 +50,11 @@ gem 'unicorn'
 # gem 'debugger', group: [:development, :test]
 
 gem "quiet_assets", ">= 1.0.1", :group => :development
-gem "figaro", ">= 0.5.3"
+#gem "figaro", ">= 0.5.3"
 gem "better_errors", ">= 0.3.2", :group => :development
 gem "binding_of_caller", ">= 0.6.8", :group => :development
 gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'formtastic-bootstrap'
-gem "font-awesome-rails"
+#gem "font-awesome-rails"
 gem "formtastic"
 gem "rails_12factor"
