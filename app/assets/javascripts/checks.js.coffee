@@ -44,10 +44,6 @@ $(document).ready ->
   $('#os-result').append(getOSName())
   $('#check_os').val(getOSName())
   
-  console.log("Match IE")
-  console.log(/Internet\sExplorer/.test(getBrowser()))
-  console.log("Match FF")
-  console.log(/Firefox/.test(getBrowser()))
   
   
   
@@ -178,6 +174,12 @@ $(document).ready ->
     comp = $('<div class="span3">Compatibility View</div><div class="span9">' + compView + '</div>')
     $('#comp-view').html(comp)
     $('#check_comp').val(compView)
+    
+    
+  console.log("Match IE")
+  console.log(/Internet\sExplorer/.test(getBrowser()))
+  console.log("Match FF")
+  console.log(/Firefox/.test(getBrowser()))
     
 
     
