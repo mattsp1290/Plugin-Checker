@@ -131,7 +131,8 @@ pdf_reader = ->
 zoom_level = ->
   # The code for this function was editing from pench's answer on http://stackoverflow.com/questions/1713771/how-to-detect-page-zoom-level-in-all-modern-browsers
   screen = document.frames.screen
-  return ((screen.deviceXDPI / screen.systemXDPI) * 100).toFixed()
+  zoom = (((screen.deviceXDPI / screen.systemXDPI) * 100).toFixed())
+  return zoom
   
   
   
@@ -195,10 +196,7 @@ $(document).ready ->
   $('#check_reader').val(pdf_reader())
   
   
-  if(/Internet\sExplorer/.test(browser_name()))
-    alert "You have IE!"
-    
-    
+  if(/Internet\sExplorer/.test(browser_name()))    
     zoom_html = $('<div class="span3">Zoom Level</div><div class="span9">' + zoom_level() + '</div>')
     $('#zoom-level').html(zoom_html())
     $('#check_zoom').val(zoom_level())
@@ -207,8 +205,6 @@ $(document).ready ->
     comp_html = $('<div class="span3">Compatibility View</div><div class="span9">' + comp_view_status() + '</div>')
     $('#comp-view').html(comp_html)
     $('#check_comp').val(comp_view_status())
-  else
-    alert "Not IE"
     
 
     
