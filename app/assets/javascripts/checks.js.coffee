@@ -146,9 +146,8 @@ comp_view_status = ->
         
 $(document).ready ->
   # In this function fields in a form and div tags are populated with results from various function calls
-  $('.hidden').removeClass("hidden")
   $('.script-disabled').html 'Plug-in Checker'
-  
+  $('.hidden').removeClass("hidden")
     
   $('#os-text').html 'Operating System'
   $('#os-result').append(os_name())
@@ -196,18 +195,7 @@ $(document).ready ->
   $('#check_reader').val(pdf_reader())
   
   
-  if(/Internet\sExplorer/.test(browser_name()))
-    alert "You have IE!"
-    
-    
-    zoom_html = $('<div class="span3">Zoom Level</div><div class="span9">' + zoom_level() + '</div>')
-    $('#zoom-level').html(zoom_html())
-    $('#check_zoom').val(zoom_level())
-   
-      
-    comp_html = $('<div class="span3">Compatibility View</div><div class="span9">' + comp_view_status() + '</div>')
-    $('#comp-view').html(comp_html)
-    $('#check_comp').val(comp_view_status())
+
     
     
 
