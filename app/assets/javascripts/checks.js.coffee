@@ -131,7 +131,10 @@ pdf_reader = ->
 zoom_level = ->
   # The code for this function was editing from pench's answer on http://stackoverflow.com/questions/1713771/how-to-detect-page-zoom-level-in-all-modern-browsers
   screen = document.frames.screen
+  alert 'screen'
   zoom = (((screen.deviceXDPI / screen.systemXDPI) * 100).toFixed())
+  alert 'zoom'
+  alert zoom
   return zoom
   
   
@@ -139,8 +142,10 @@ zoom_level = ->
 # geocomp_view() returns whether or not Compatibility View is enabled on the user's browser
 comp_view_status = ->
   comp_view = 'disabled'
+  alert 'disabled'
   if (document.documentMode == 7) 
     comp_view = 'enabled'
+  alert 'enabled'
   return comp_view
   
   
