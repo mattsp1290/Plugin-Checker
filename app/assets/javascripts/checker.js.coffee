@@ -59,9 +59,9 @@ cookies_status = ->
       cookies = false
   
   if cookies
-    cookies = 'enabled'
+    cookies = 'Enabled'
   else
-    cookies = 'disabled'
+    cookies = 'Disabled'
     
   return cookies
 
@@ -77,11 +77,11 @@ popup_blocker_status = ->
   if(!popup || popup.outerHeight == 0)
       # First Checking Condition Works For IE & Firefox
       # Second Checking Condition Works For Chrome
-    popups = "enabled"
+    popups = "Enabled"
   else
     # Popup Blocker Is Disabled
     popup.close()
-    popups = "disabled"   
+    popups = "Disabled"   
   return popups
 
 
@@ -94,7 +94,7 @@ flash_version = ->
   if FlashDetect.raw
     flash = (FlashDetect.major + '.' + FlashDetect.minor + '.' + FlashDetect.revision)
   else
-    flash = 'disabled'
+    flash = 'Disabled'
     
   return flash
     
@@ -108,7 +108,7 @@ java_versions = ->
   if deployJava.getJREs().length > 0
     java = deployJava.getJREs()
   else
-    java = 'disabled'
+    java = 'Disabled'
   return java
 
 
@@ -121,7 +121,7 @@ pdf_reader = ->
   if reader.acrobat
     reader = reader.acrobatVersion
   else
-    reader = 'disabled'
+    reader = 'Disabled'
   return reader
   
   
@@ -130,17 +130,22 @@ pdf_reader = ->
 # This only works for Internet Explorer  
 zoom_level = ->
   # The code for this function was editing from pench's answer on http://stackoverflow.com/questions/1713771/how-to-detect-page-zoom-level-in-all-modern-browsers
-  screen = document.frames.screen
-  zoom = (((screen.deviceXDPI / screen.systemXDPI) * 100).toFixed())
+  zoom = "Unavailable"
+  if(/Internet\sExplorer/.test(browser_name()))
+    screen = document.frames.screen
+    zoom = (((screen.deviceXDPI / screen.systemXDPI) * 100).toFixed())
   return zoom
   
   
   
 # geocomp_view() returns whether or not Compatibility View is enabled on the user's browser
 comp_view_status = ->
-  comp_view = 'disabled'
-  if (document.documentMode == 7) 
-    comp_view = 'enabled'
+  comp_view = "Unavailable"
+  if(/Internet\sExplorer/.test(browser_name()))
+    if (document.documentMode == 7)
+      comp_view = 'Enabled'
+    else
+      comp_view = 'Disabled'
   return comp_view
   
   
@@ -149,62 +154,61 @@ $(document).ready ->
   # In this function fields in a form and div tags are populated with results from various function calls
   $('.script-disabled').html 'Plug-in Checker'
   $('.hidden').removeClass("hidden")
-    
-  $('#os-text').html 'Operating System'
-  $('#os-result').append(os_name())
-  $('#check_os').val(os_name())
+  
+  os = os_name()  
+  $('#os-result').html(os)
+  $('#check_os').val(os)
   
   
-  $('#browser-text').html 'Browser Version'
-  $('#browser-result').append(browser_name())
-  $('#check_browser').val(browser_name())
+  browser = browser_name()
+  $('#browser-result').html(browser)
+  $('#check_browser').val(browser)
   
   
-  $('#uas-text').html 'User Agent String'
-  $('#uas-result').append(user_agent_string())
-  $('#check_uas').val(user_agent_string())
+  uas = user_agent_string()
+  $('#uas-result').html(uas)
+  $('#check_uas').val(uas)
   
   
-  $('#resolution-text').html 'Screen Resolution'
+  comp_view = comp_view_status()  
+  $('#comp-result').html(comp_view)
+  $('#check_comp').val(comp_view)
+  
+  
   resolution = '' + window.screen.availWidth + ' x ' + window.screen.availHeight
-  $('#resolution-result').append(resolution)
+  $('#resolution-result').html(resolution)
   $('#check_resolution').val(resolution)
   
   
-  $('#cookies-text').html 'Cookies'
-  $('#cookies-result').append(cookies_status())
-  $('#check_cookies').val(cookies_status())
+  zoom = zoom_level()
+  $('#zoom-result').html(zoom)
+  $('#check_zoom').val(zoom)
   
   
-  $('#popup-text').html 'Pop-up Blocker'
-  $('#check_popups').val(popup_blocker_status())
-  $('#popup-result').html(popup_blocker_status())
+  cookies = cookies_status()
+  $('#cookies-result').html(cookies)
+  $('#check_cookies').val(cookies)
+  
+  
+  popup_blocker = popup_blocker_status()
+  $('#check_popups').val(popup_blocker)
+  $('#popup-result').html(popup_blocker)
 
   
-  $('#flash-text').html 'Flash Version'
-  $('#check_flash').val(flash_version())
-  $('#flash-result').html(flash_version())
+  flash = flash_version()
+  $('#check_flash').val(flash)
+  $('#flash-result').html(flash)
 
 
-  $('#java-text').html 'Java Version'
-  $('#java-result').html(java_versions())
-  $('#check_java').val(java_versions())
+  java = java_versions()
+  $('#java-result').html(java)
+  $('#check_java').val(java)
   
   
-  $('#reader-text').html 'Acrobat Reader'    
-  $('#reader-result').append(pdf_reader())
-  $('#check_reader').val(pdf_reader())
-  
-  
-  if(/Internet\sExplorer/.test(browser_name()))    
-    zoom_html = $('<div class="span3">Zoom Level</div><div class="span9">' + zoom_level() + '</div>')
-    $('#zoom-level').html(zoom_html)
-    $('#check_zoom').val(zoom_level())
-   
+  pdf = pdf_reader()
+  $('#reader-result').html(pdf)
+  $('#check_reader').val(pdf)
       
-    comp_html = $('<div class="span3">Compatibility View</div><div class="span9">' + comp_view_status() + '</div>')
-    $('#comp-view').html(comp_html)
-    $('#check_comp').val(comp_view_status())
     
 
     

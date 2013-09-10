@@ -1,4 +1,4 @@
-<%= form_for(@check) do |f| %>
+<%= semantic_form_for(@check) do |f| %>
   <% if @check.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@check.errors.count, "error") %> prohibited this check from being saved:</h2>
@@ -10,62 +10,14 @@
       </ul>
     </div>
   <% end %>
-  <div class="row odd">
-	  <div class="span3" id="os-text">
-	  </div>
-	  <div class="span9" id="os-result">
-	  </div>
-  </div>
-  <div class="row even">
-	  <div class="span3" id="browser-text">
-	  </div>
-	  <div class="span9" id="browser-result">
-	  </div>
-  </div>
-  <div class="row odd">
-	  <div class="span3" id="uas-text">
-	  </div>
-	  <div class="span9" id="uas-result">
-	  </div>
-  </div>
-  <div class="row even">
-	  <div class="span3" id="resolution-text">
-	  </div>
-	  <div class="span9" id="resolution-result">
-	  </div>
-  </div>
-  <div class="row odd">
-	  <div class="span3" id="cookies-text">
-	  </div>
-	  <div class="span9" id="cookies-result">
-	  </div>
-  </div>
-  <div class="row even">
-	  <div class="span3" id="popup-text"></div>
-	  <div class="span9" id="popup-result">
-	  </div>
-  </div>
-  <div class="row odd">
-	  <div class="span3" id="flash-text">
-	  </div>
-	  <div class="span9" id="flash-result">
-	  </div>
-  </div>
-  <div class="row even">
-	  <div class="span3" id="java-text">
-	  </div>
-	  <div class="span9" id="java-result">
-	  </div>
-  </div>
-  <div class="row odd">
-	  <div class="span3" id="reader-text"></div>
-	  <div class="span9" id="reader-result">
-	  </div>
-  </div>
+
+
+  <%= render 'full' %>
+
+
+
   
-  <div class="row even" id="zoom-level"></div>
-  <div class="row odd" id="comp-view"></div>
-  
+
   <%= f.hidden_field :os, value: 'Unavailable'%>
   <%= f.hidden_field :browser, value: 'Unavailable'%>
   <%= f.hidden_field :uas, value: 'Unavailable'%>
@@ -80,7 +32,7 @@
   
   
   <div class="actions">
-    <%= f.submit("Save") %>
+    <%= f.submit("Save", class: "btn btn-large btn-primary") %>
   </div>
   
 <% end %>
