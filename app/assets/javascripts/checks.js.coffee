@@ -139,10 +139,8 @@ zoom_level = ->
 # geocomp_view() returns whether or not Compatibility View is enabled on the user's browser
 comp_view_status = ->
   comp_view = 'disabled'
-  alert 'disabled'
   if (document.documentMode == 7) 
     comp_view = 'enabled'
-  alert 'enabled'
   return comp_view
   
   
