@@ -200,8 +200,7 @@ $(document).ready ->
   
   if(/Internet\sExplorer/.test(browser_name()))    
     zoom_html = $('<div class="span3">Zoom Level</div><div class="span9">' + zoom_level() + '</div>')
-    alert "Adding zoom html"
-    $('#zoom-level').html(zoom_html())
+    $('#zoom-level').html(zoom_html)
     $('#check_zoom').val(zoom_level())
    
       
